@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
-import { DUMMY_USERS } from '../dummy-users';
+import { Component, signal } from '@angular/core';
+import { DUMMY_USERS } from '../../dummy-users';
 
 const randomindex = Math.floor(Math.random() * DUMMY_USERS.length);
+
 @Component({
   selector: 'app-user',
   standalone: true,
@@ -10,12 +11,13 @@ const randomindex = Math.floor(Math.random() * DUMMY_USERS.length);
   styleUrl: './user.component.scss',
 })
 export class UserComponent {
-  selectuser = DUMMY_USERS[randomindex];
+  selectuser = signal(DUMMY_USERS[randomindex]);
   get imagePath() {
     //this property useful for accessing property inside our class
-    return 'assets/users/users/' + this.selectuser.avatar;
+    return 'assets/users/users/' + this.selectuser().avatar;
   }
   onClick() {
-    console.log('button clicked');
+    const randomindex = Math.floor(Math.random() * DUMMY_USERS.length);
+    this.selectuser.set(DUMMY_USERS[randomindex]);
   }
 }
