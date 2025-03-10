@@ -9,16 +9,13 @@ import {
   output,
 } from '@angular/core';
 import { DUMMY_USERS } from '../../dummy-users';
-interface Users {
-    id: string;
-    avatar: string;
-    name: string;
-  }
+import {  type Users } from './user.model';
+import { CardComponent } from "../../Shared/card/card.component";
 
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [],
+  imports: [CardComponent],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss',
 })
@@ -28,6 +25,7 @@ export class UserComponent {
     avatar:string;
     name:string;
   }
+  @Input({required:true}) selected!:boolean;
   @Output() select = new EventEmitter<string>();
 name: any;
   // select=output<string>();

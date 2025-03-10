@@ -12,15 +12,18 @@ import { TasksComponent } from './Component/tasks/tasks.component';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
+  title(title: any) {
+    throw new Error('Method not implemented.');
+  }
   users = DUMMY_USERS;
-  selectedUsedId?:string;
+  selectedUserId?:string;
 
   get selectedUser() {
-    return this.users.find((user) => user.id === this.selectedUsedId)!;
+    return this.users.find((user) => user.id === this.selectedUserId)!;
   }
 
   onSelectUser(id: string) {
     console.log('Selected user with id' + id);
-    this.selectedUsedId = id;
+    this.selectedUserId = id;
   }
 }
